@@ -39,7 +39,7 @@ pipeline {
                         mkdir -p ~/.ssh
                         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
-                        git clone git@github.com:vamckumar/html-demo-app.git
+                        git clone git@github.com:VAMCKUMAR/html-demo-app.git
                         cd html-demo-app
 
                         sed -i '/name: vamckumar\\/html-app/{n;s/newTag: .*/newTag: ${params.VERSION}/}' kustomization.yaml
