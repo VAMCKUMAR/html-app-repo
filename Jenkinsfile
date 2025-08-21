@@ -12,7 +12,7 @@ pipeline {
             steps {
                 container('docker') {
                     script {
-                        docker.build("deepaks374/html-app:${params.VERSION}")
+                        docker.build("vamckumar/html-app:${params.VERSION}")
                     }
                 }
             }
@@ -22,7 +22,7 @@ pipeline {
                 container('docker') {
                     script {
                         docker.withRegistry('https://registry.hub.docker.com', env.DOCKER_CREDENTIALS) {
-                            docker.image("deepaks374/html-app:${params.VERSION}").push()
+                            docker.image("vamckumar/html-app:${params.VERSION}").push()
                         }
                     }
                 }
@@ -39,10 +39,10 @@ pipeline {
                         mkdir -p ~/.ssh
                         ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
-                        git clone git@github.com:deepaks374/html-demo-app.git
+                        git clone git@github.com:vamckumar/html-demo-app.git
                         cd html-demo-app
 
-                        sed -i '/name: deepaks374\\/html-app/{n;s/newTag: .*/newTag: ${params.VERSION}/}' kustomization.yaml
+                        sed -i '/name: vamckumar\\/html-app/{n;s/newTag: .*/newTag: ${params.VERSION}/}' kustomization.yaml
 
                         git config user.email "automation@users.noreply.github.com"
                         git config user.name "Automation User"
